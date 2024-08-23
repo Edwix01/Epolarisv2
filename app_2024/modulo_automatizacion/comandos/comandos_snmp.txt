@@ -1,0 +1,3 @@
+configure
+snmp-server community epolaris read-only
+exit

@@ -1,0 +1,196 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right,#84ACE3,#84ACE3); /* Fondo en degradado iniciando con blanco */
+    font-family: Arial, sans-serif;
+    color: #2A69AC; /* Texto en negro */
+  }
+  .overlay {
+    position: relative;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 75%); /* Transición suave de transparente a blanco */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+  }
+ 
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0; /* Asegurarse de que no haya padding predeterminado */
+  }
+  
+  .social-icons li {
+    margin: 0 10px;
+  }
+  .social-icons a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .logo-img {
+    width: 70px; /* Tamaño fijo del logo */
+    height: 70px; /* Tamaño fijo del logo */
+    border-radius: 5px; /* Bordes ligeramente redondeados */
+    object-fit: cover; /* Asegurar que la imagen cubra el espacio sin deformarse */
+    overflow: hidden; /* Prevenir desbordamiento en caso de que la imagen no sea perfectamente cuadrada */
+  }
+  
+  .footer {
+    background: #4e81b8;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  .footer p {
+    margin: 0.5rem 0;
+  }
+  
+  .footer .company-info p,
+  .footer .social-links a {
+  margin: 10px 0; /* Espacio entre elementos */
+  }
+  
+  .footer a {
+    color: #ffffff; /* Color de los enlaces: blanco */
+    text-decoration: none; /* Sin subrayado */
+    padding: 2px; /* Espaciado interno para hacerlos más clickeables */
+    display: inline-block;
+    font-size: 16px; /* Tamaño de la fuente */
+  }
+  
+  .footer a:hover,
+  .footer a:focus {
+    color: #add8e6; /* Cambia el color al pasar el mouse: azul clarito */
+  }
+  
+  .footer .social-links {
+    margin: 10px 0; /* Espaciado entre las líneas */
+  }
+  
+  .footer .social-links a {
+    margin: 0 10px; /* Espaciado entre los enlaces */
+  }
+  
+  .footer .company-info p {
+    margin: 5px 0; /* Espaciado entre los párrafos */
+  }
+  
+  .dropbtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  }
+  
+  
+  .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: linear-gradient(to right,#84ACE3,#84ACE3);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  z-index: 1;
+  }
+  
+  .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  }
+  
+  .dropdown-content a:hover {
+  background-color: #f1f1f1;
+  }
+  
+
+  .upload-btn:hover {
+    background-color: #45a049;
+  }
+  
+  form {
+    margin-top: 10px;
+  }
+
+  .dropzone {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    position: relative;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+    background: white;
+    cursor: pointer;
+  }
+  
+  .file-dropper {
+    margin: 10px;
+    padding: 20px;
+  }
+  
+  input[type="file"] {
+    width: 100%;
+    height: 100px;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+  }
+  
+  .upload-btn {
+    display: block; /* Ensures the button is a block element */
+    width: 100%; /* Button width to 100% of its container */
+    margin-top: 20px; /* Adds space between the file list and the button */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .notification {
+    position: fixed;
+    top: 10%; /* O la posición que prefieras */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #66bb69; /* Verde para éxito */
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: none; /* Oculto por defecto */
+    z-index: 1001; /* Asegúrate de que esté por encima de otros elementos */
+  }
+  
+  .notification.show {
+    display: block; /* Muestra la notificación */
+  }
+  
+  .notification.error {
+    background-color: #f44336; /* Rojo para error */
+  }
+  
+  .file-list li {
+    padding: 5px;
+    background-color: #e9e9e9;
+    border: 1px solid #d9d9d9;
+    margin-top: 5px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .file-list li::before {
+    content: "";
+    display: inline-block;
+    width: 24px; /* o el tamaño que prefieras */
+    height: 24px;
+    background-image: url('/image/enviar_epolaris.png');
+    background-size: cover;
+    margin-right: 10px;
+  }
+  

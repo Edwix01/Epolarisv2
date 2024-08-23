@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/estilos_op.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div class="overlay">
+  <div class="container">
+    <h1 class="title">Configuración de Servicios</h1>
+    <div class="categories">  
+
+      <div class="category">
+        <button class="dropbtn" onclick="toggleDropdown('dropdown-snmp')">
+        <img src="/image/snmp_epolaris.png" alt="SNMP">
+      </button>
+        <p>SNMP</p>
+        <div id="dropdown-snmp" class="dropdown-content">
+        <!-- Agrega aquí tus enlaces o contenido del menú -->
+        <a href="/access_list">Crear Lista de Acceso</a>
+        <a href="/snmp">Agregar Comunidad</a>
+        
+      </div>
+      </div>
+
+      <div class="category">
+        <button class="dropbtn" onclick="toggleDropdown('dropdown-stp')">
+        <img src="/image/stp_epolaris.png" alt="STP">
+      </button>
+        <p>STP</p>
+        <div id="dropdown-stp" class="dropdown-content">
+        <!-- Agrega aquí tus enlaces o contenido del menú -->
+        <a href="/stp">Activar STP</a>
+        <a href="/stp1">Configurar Prioridad de Puente</a>
+        <a href="/pathcost">Configurar Costo de Ruta</a>
+      </div>
+      </div>
+
+      <div class="category">
+        <button class="dropbtn" onclick="toggleDropdown('dropdown-vlan')">
+        <img src="/image/vlan_epolaris.png" alt="VLAN">
+      </button>
+        <p>Vlans</p>
+        <div id="dropdown-vlan" class="dropdown-content">
+        <!-- Agrega aquí tus enlaces o contenido del menú -->
+        <a href="/vlan">Crear VLAN</a>
+      </div>
+      </div>
+
+      <div class="category">
+        <button class="dropbtn" onclick="toggleDropdown('dropdown-logs')">
+        <img src="/image/logs_epolaris.png" alt="LOGS">
+      </button>
+        <p>Logs</p>
+        <div id="dropdown-logs" class="dropdown-content">
+        <!-- Agrega aquí tus enlaces o contenido del menú -->
+        <a href="/logs">Configurar Servidor Logs</a>
+      </div>
+      </div>
+
+      <div class="category" id="loading">
+        <img id="loadingImage" src="/image/loading.gif" alt="Cargando..." style="display:none;">
+        <p id="loadingText" style="display:none;">Cargando configuración, por favor espere...</p>
+            
+        <button id="balanceo-btn" class="button-icon" onclick="ejecutarScript()">
+            <img src="/image/balanceo_carga_epolaris.png" alt="Icono Configurar"> <!-- Asegúrate de tener un icono apropiado -->
+            <span>Balanceo de Carga</span>
+        </button>
+
+      </div>
+      
+    </div>
+    
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="company-info">
+    <ul class="social-icons">
+      <li><img src="/image/logo1.png" alt="Logo" class="logo-img"></li>
+    </ul>
+    <p>© 2024 EPOLARIS C.A. Todos los derechos reservados.</p>
+    <p>Universidad de Cuenca | Cuenca-Ecuador</p>
+    <p>Edwin Anibal Lima Huayllas | Teléfono: 0986134151 | edwin.lima@ucuenca.edu.ec</p>
+    <div class="social-links">
+      <a href="https://wa.me/593986134151" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="https://www.instagram.com/edwiin.jpg/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://www.linkedin.com/in/edwin-lima-7534b5199" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    <p>Paola Alexandra Mora Pedroza | Teléfono: 0963636085 | alexandra.mora@ucuenca.edu.ec</p>
+    <div class="social-links">
+      <a href="https://wa.me/593963636085" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="https://www.instagram.com/paomora0/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://www.linkedin.com/in/paola-mora-pedroza-b71b46231" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script> 
+var openDropdown = null;
+
+function toggleDropdown(dropdownId) {
+  var dropdown = document.getElementById(dropdownId);
+  if (dropdown.style.display === 'block') {
+    dropdown.style.display = 'none';
+    openDropdown = null;
+  } else {
+    
+    if (openDropdown) {
+      openDropdown.style.display = 'none';
+    }
+    dropdown.style.display = 'block';
+    openDropdown = dropdown;
+    // Asegura que solo se añade el evento una vez
+    document.removeEventListener('click', closeDropdownOnOutsideClick, true);
+    document.addEventListener('click', closeDropdownOnOutsideClick, true);
+  }
+}
+
+function closeDropdownOnOutsideClick(event) {
+  if (openDropdown && !openDropdown.contains(event.target)) {
+    openDropdown.style.display = 'none';
+    openDropdown = null;
+    // Remueve el listener después de cerrar el menú para evitar duplicados
+    document.removeEventListener('click', closeDropdownOnOutsideClick, true);
+  }
+}
+
+function ejecutarScript() {
+  document.getElementById('loadingImage').style.display = 'block'; // Muestra el GIF de carga
+  document.getElementById('loadingText').style.display = 'none'; // Oculta el párrafo
+  document.getElementById('balanceo-btn').style.display = 'none'; // Oculta el botón
+
+  fetch('/run1')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.success) {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('balanceo-btn').style.display = 'block'; 
+        // Redirigir a la página de balanceo
+        window.location.href = '/balanceo';
+        
+      } else {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('balanceo-btn').style.display = 'block'; // Oculta el botón
+        alert(data.message);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Error al ejecutar el script');
+    });
+}
+
+</script>
+</body>
+</html>
