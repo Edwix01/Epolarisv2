@@ -82,6 +82,7 @@ function stp(req, res) {
   function balanceo(req, res) {
     if (req.session.loggedin) {
       const datos = cargarDatos();
+      console.log('Datos:', datos); 
       res.render('epops/balanceo', {
         name: req.session.name,
         datos: datos // Pasa los datos a la vista
@@ -95,10 +96,10 @@ function stp(req, res) {
     if (!req.session.loggedin) {
       return res.redirect('/');
     }
-  
-    const pathToPythonScript = '/home/du/Prototipo_App2024/app_2024/Epops/mainBalanceo.py';
+    const pathToPythonScript = path.join(__dirname, '../../Epops/mainBalanceo.py');
     console.log(`Ejecutando script: ${pathToPythonScript}`);
-    exec(`python3 ${pathToPythonScript}`, (error, stdout, stderr) => {
+    const command = `source /app/venv/bin/activate && python3 ${pathToPythonScript}`;
+    exec(command, { shell: '/bin/bash' }, (error, stdout, stderr) => {
       if (error) {
         console.error(`Error al ejecutar el script: ${stderr}`);
         return res.status(500).json({ success: false, message: 'Error al ejecutar el script', error: stderr });
@@ -199,8 +200,8 @@ function stp(req, res) {
   
     if (tipoFormulario === 'balanceo') {
       try {
-        const pathToPythonScript = '/home/du/Prototipo_App2024/app_2024/modulo_automatizacion/balanceo_int.py';
-        const resPython = execSync(`python3 ${pathToPythonScript}`);
+        const pathToPythonScript = path.join(__dirname, '..', '..', 'modulo_automatizacion', 'balanceo_int.py');
+        const resPython = execSync(`source /app/venv/bin/activate && python3 ${pathToPythonScript}`);
         console.log('Respuesta de Python:', resPython.toString());
         
         return res.status(200).send(resPython.toString());
@@ -258,7 +259,8 @@ function stop(req, res) {
   }
 
   // Definir la ruta del script
-  const scriptPath = '/home/du/Prototipo_App2024/app_2024/src/inicializacion/epolaris_stop_sistema.sh';
+  const scriptPath = path.join(__dirname, '..','inicializacion', 'epolaris_stop_sistema.sh');
+
   
   // Ejecutar el script
   exec(`bash ${scriptPath}`, (error, stdout, stderr) => {

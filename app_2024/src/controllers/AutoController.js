@@ -595,8 +595,11 @@ function guardarDispositivo(req, res) {
 
     try {
       // Asegúrate de que la ruta al script Python sea correcta
-      const pathToPythonScript = '/home/du/Prototipo_App2024/app_2024/modulo_automatizacion/snmp_int.py';
-      const resPython = execSync(`python3 ${pathToPythonScript}`);
+      const pathToPythonScript = path.join(__dirname, '..', '..', 'modulo_automatizacion', 'snmp_int.py');
+      const resPython = execSync(`source /app/venv/bin/activate && python3 ${pathToPythonScript}`, {
+        stdio: 'inherit',
+        shell: '/bin/bash'
+      });
       console.log('Respuesta de Python:', resPython.toString());
 
       if (resultado.exito) {
@@ -616,8 +619,11 @@ function guardarDispositivo(req, res) {
     console.log(resultado);
 
     try {
-      const pathToPythonScript = '/home/du/Prototipo_App2024/app_2024/modulo_automatizacion/stp_active_int.py';
-      const resPython = execSync(`python3 ${pathToPythonScript}`);
+      const pathToPythonScript = path.join(__dirname, '..', '..', 'modulo_automatizacion', 'stp_active_int.py');
+      const resPython = execSync(`source /app/venv/bin/activate && python3 ${pathToPythonScript}`, {
+        stdio: 'inherit',
+        shell: '/bin/bash'
+      });
       console.log('Respuesta de Python:', resPython.toString());
 
       if (resultado.exito) {
@@ -636,9 +642,11 @@ function guardarDispositivo(req, res) {
     console.log(resultado);
 
     try {
-  
-      const pathToPythonScript = '/home/du/Prototipo_App2024/app_2024/modulo_automatizacion/stp_priority_int.py';
-      const resPython = execSync(`python3 ${pathToPythonScript}`);
+      const pathToPythonScript = path.join(__dirname, '..', '..', 'modulo_automatizacion', 'stp_priority_int.py');
+      const resPython = execSync(`source /app/venv/bin/activate && python3 ${pathToPythonScript}`, {
+        stdio: 'inherit',
+        shell: '/bin/bash'
+      });
       console.log('Respuesta de Python:', resPython.toString());
 
       if (resultado.exito) {
@@ -657,9 +665,11 @@ function guardarDispositivo(req, res) {
     console.log(resultado);
 
     try {
-  
-      const pathToPythonScript = '/home/du/Prototipo_App2024/app_2024/modulo_automatizacion/vlan_int.py';
-      const resPython = execSync(`python3 ${pathToPythonScript}`);
+      const pathToPythonScript = path.join(__dirname, '..', '..', 'modulo_automatizacion', 'vlan_int.py');
+      const resPython = execSync(`source /app/venv/bin/activate && python3 ${pathToPythonScript}`, {
+        stdio: 'inherit',
+        shell: '/bin/bash'
+      });
       console.log('Respuesta de Python:', resPython.toString());
 
       if (resultado.exito) {
@@ -678,9 +688,11 @@ function guardarDispositivo(req, res) {
     console.log(resultado);
 
     try {
-  
-      const pathToPythonScript = '/home/du/Prototipo_App2024/app_2024/modulo_automatizacion/logs_int.py';
-      const resPython = execSync(`python3 ${pathToPythonScript}`);
+      const pathToPythonScript = path.join(__dirname, '..', '..', 'modulo_automatizacion', 'logs_int.py');
+      const resPython = execSync(`source /app/venv/bin/activate && python3 ${pathToPythonScript}`, {
+        stdio: 'inherit',
+        shell: '/bin/bash'
+      });
       console.log('Respuesta de Python:', resPython.toString());
 
       if (resultado.exito) {
@@ -698,9 +710,11 @@ function guardarDispositivo(req, res) {
     const resultado = datosAcessList(req.body);
 
     try {
-  
-      const pathToPythonScript = '/home/du/Prototipo_App2024/app_2024/modulo_automatizacion/accesslist_int.py';
-      const resPython = execSync(`python3 ${pathToPythonScript}`);
+      const pathToPythonScript = path.join(__dirname, '..', '..', 'modulo_automatizacion', 'accesslist_int.py');
+      const resPython = execSync(`source /app/venv/bin/activate && python3 ${pathToPythonScript}`, {
+        stdio: 'inherit',
+        shell: '/bin/bash'
+      });
       console.log('Respuesta de Python:', resPython.toString());
 
       if (resultado.exito) {
@@ -718,9 +732,11 @@ function guardarDispositivo(req, res) {
     const resultado = datosSTPCostos(req.body);
 
     try {
-  
-      const pathToPythonScript = '/home/du/Prototipo_App2024/app_2024/modulo_automatizacion/stp_cost_int.py';
-      const resPython = execSync(`python3 ${pathToPythonScript}`);
+      const pathToPythonScript = path.join(__dirname, '..', '..', 'modulo_automatizacion', 'stp_cost_int.py');
+      const resPython = execSync(`source /app/venv/bin/activate && python3 ${pathToPythonScript}`, {
+        stdio: 'inherit',
+        shell: '/bin/bash'
+      });
       console.log('Respuesta de Python:', resPython.toString());
 
       if (resultado.exito) {

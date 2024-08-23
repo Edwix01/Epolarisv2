@@ -1,4 +1,6 @@
 import yaml
+import os
+
 def ordenar_ip(l):
     """
     Permitira ordenadar los pares de conexiones en orden numerico
@@ -145,7 +147,9 @@ def yaml_web(dp):
         'datos_web': datos_web,
     }
     # Escribir los datos en un archivo YAML
-    with open('/home/du/Prototipo_App2024/app_2024/Epops/balanceo/balanceo_web.yaml', 'w') as file:
+    current_dir = os.path.dirname(__file__)
+    archivoDispositivos = os.path.join(current_dir, 'balanceo', 'balanceo_web.yaml')
+    with open(archivoDispositivos, 'w') as file:
         yaml.dump(yaml_data, file, default_flow_style=False, sort_keys=False)
 
 
@@ -180,7 +184,9 @@ def yaml_datos(conexiones):
                 'interfaz1': interfaz_destino
             }
     # Escribir el diccionario a un archivo YAML
-    with open('/home/du/Prototipo_App2024/app_2024/Epops/balanceo/balanceo_datos.yaml', 'w') as file:
+    current_dir = os.path.dirname(__file__)
+    archivoDispositivos = os.path.join(current_dir, 'balanceo', 'balanceo_datos.yaml')
+    with open(archivoDispositivos, 'w') as file:
         yaml.dump(conexiones_dict, file, sort_keys=False, default_flow_style=False)
 
 

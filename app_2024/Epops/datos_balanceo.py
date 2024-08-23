@@ -13,3 +13,4 @@ def ejecutar_proceso(direc, datos):
     nf = verstp.obtener_numeros_despues_del_punto(l)
     nodb, f4, fif4 = stp_blk.stp_status(direc, nf, datos)
     return l, nodb, info_int
+

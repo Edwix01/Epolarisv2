@@ -33,7 +33,7 @@ def ma_int(direc,datos):
 
         for varBindTableRow in varBindTable:
             for name, val in varBindTableRow:
-                if "Ethernet" in val.prettyPrint() and  not("0/0" in val.prettyPrint() ) :
+                if "Ethernet" in val.prettyPrint() :
                     # Utilizar una expresión regular para extraer la primera letra y los números
                     cadena = val.prettyPrint()
                     # Utilizar una expresión regular para encontrar solo los números y barras
